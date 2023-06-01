@@ -9,10 +9,59 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles/navBar.css">
+    <link rel="stylesheet" href="../styles/style.css">
 </head>
 <body>
     {{>navBar}}
     <h1>All Patients</h1>
+    <button type="button" class="addBtn">
+        <a href="/patient/addpatient">
+            <i class="fa-solid fa-user-plus"></i>
+        </a>
+    </button>
+    <div class="container">
+        <h2 class="heading">Patient Details</h2>
+    
+        <div class="head">
+            <h3>S.No</h3>
+            <h3>Patient Name</h3>
+            <h3>Date of Visit</h3>
+            <h3>Phone No.</h3>
+        </div>
+    
+        <a href="" class="entryLink">
+            <div class="entry">
+                <h2>1</h2>
+                <h2>Ashish Kumar</h2>
+                <h2>30/05/2023</h2>
+                <h2>9876543210</h2>
+            </div>
+        </a>
+        <a href="" class="entryLink">
+            <div class="entry">
+                <h2>2</h2>
+                <h2>Ashish Kumar</h2>
+                <h2>30/05/2023</h2>
+                <h2>9876543210</h2>
+            </div>
+        </a>
+        <a href="" class="entryLink">
+            <div class="entry">
+                <h2>3</h2>
+                <h2>Ashish Kumar</h2>
+                <h2>30/05/2023</h2>
+                <h2>9876543210</h2>
+            </div>
+        </a>
+        <a href="" class="entryLink">
+            <div class="entry">
+                <h2>4</h2>
+                <h2>Ashish Kumar</h2>
+                <h2>30/05/2023</h2>
+                <h2>9876543210</h2>
+            </div>
+        </a>
+    </div>
     <script src="../js/navBar.js"></script>
 </body>
 </html>

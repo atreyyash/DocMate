@@ -20,13 +20,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 let patientRouter = require('./routes/patients/patients');
 
-// <<<<<<< signup-login
+
 const users=require('./routes/users')
 
 app.use('/users',users)
 app.use("/patient", patientRouter);
 
-
+app.get('/', (req, res) => {
+    res.render('home');
+});
 
 
 mongoose.connect(url)
@@ -55,8 +57,8 @@ process.on('SIGINT', () => {
         console.log("Mongoose default connection closed");
         process.exit(0);
     })
-// app.get('/', (req, res) => {
-//     res.render('home');
-// });
+});
 
-
+app.listen(PORT,()=>{
+    console.log(`http://localhost:`+PORT);
+})
