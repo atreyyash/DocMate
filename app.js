@@ -4,6 +4,7 @@ const app = express();
 const PORT = 4444;
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
+// <<<<<<< signup-login
 const mongoose  = require('mongoose');
 
 const dotenv = require('dotenv');
@@ -17,11 +18,13 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
+let patientRouter = require('./routes/patients/patients');
 
+// <<<<<<< signup-login
 const users=require('./routes/users')
 
 app.use('/users',users)
-
+app.use("/patient", patientRouter);
 
 
 
@@ -52,4 +55,8 @@ process.on('SIGINT', () => {
         console.log("Mongoose default connection closed");
         process.exit(0);
     })
-})
+// app.get('/', (req, res) => {
+//     res.render('home');
+// });
+
+
