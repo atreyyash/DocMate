@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <button class="signUpBtn">SignUp</button>
+    <button class="logInBtn">LogIn</button>
+    <div class="info">
+        <br>
+        <form action="/users/signup" method="post" class="signUp">
+            <label for="email">Email</label>
+            <input name="email" type="text" id="signup-email">
+            <br>
+            <label for="username">Username</label>
+            <input name="username" type="text" id="signup-username">
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="signup-password">
+            <br>
+            <button type="submit">Signup</button>
+        </form>
+        <form action="/users/login" method="post" class="logIn">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="login-email">
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="login-password">
+            <br>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    
+    <script src="./js/index.js"></script>
+</body>
+</html>
