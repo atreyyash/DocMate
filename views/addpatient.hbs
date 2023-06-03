@@ -25,30 +25,42 @@
             <form action="/patient/addpatient" method="post">
                 <label for="name" class="label" required>Name: </label>
                 <input type="text" id="name" name="name"><br>
+
                 <label for="age" class="label">Age:</label>
-                <input type="text" id="age"><br>
-                <label for="gender" class="label">Gender: </label>
-                <input type="radio" id="male">
-                <label for="male" class="label">Male</label>
-                <input type="radio" id="female">
-                <label for="female" class="label">Female</label><br>
+                <input type="text" id="age" name="age"><br>
+
+                <label for="gender" class="label" >Gender: </label>
+                <input type="radio" name="gender" id="male" value="male">Male
+                {{!-- <label for="male" class="label">Male</label> --}}
+
+                <input type="radio"  name="gender" id="female" value="female">Female <br>
+                {{!-- <label for="female" class="label">Female</label><br> --}}
+
                 <label for="phno" class="label">Phone No:</label>
-                <input type="text" id="phno">
+                <input type="text" id="phno" name="phno">
+
                 <label for="address" class="label">Address:</label>
-                <input type="text" id="address"><br>
+                <input type="text" id="address" name="address"><br>
+
                 <label for="dov" class="label">Date of Visit:</label>
-                <input type="date" id="dov"><br>
+                <input type="date" id="dov" name="dov"><br>
+
                 <label for="complaint" class="label">Complaints: </label>
                 <textarea name="complaint" id="complaint" cols="30" rows="2"></textarea><br>
+
                 <label for="diagnosis">Diagnosis: </label>
-                <input type="text" id="diagnosis"><br>
+                <input type="text" id="diagnosis" name="diagnosis"><br>
+                
                 <label for="treatmentPeriod">Treatment Period:</label>
-                <input type="text" id="treatmentPeriod"><br>
+                <input type="text" id="treatmentPeriod" name="treatmentPeriod"><br>
+                
                 <label for="payment">Payment: </label>
-                <input type="number" id="payment"><br>
+                <input type="number" id="payment" name="payment"><br>
+                
                 <label for="remarks">Remarks:</label>
                 <textarea name="remarks" id="remarks" cols="30" rows="2"></textarea><br>
-                <input type="submit" value="Add Patient" class="btn">
+                
+                <button type="submit" value="Add Patient" class="btn">Submit
             </form>
         </div>
     </div>

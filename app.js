@@ -4,11 +4,10 @@ const app = express();
 const PORT = 4444;
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
-// <<<<<<< signup-login
 const mongoose  = require('mongoose');
 
 const dotenv = require('dotenv');
-const { unsubscribe } = require('./routes/users');
+
 dotenv.config();
 
 const url=process.env.MONGO_URL;
@@ -26,7 +25,7 @@ const users=require('./routes/users')
 app.use('/users',users)
 app.use("/patient", patientRouter);
 
-app.get('/', (req, res) => {
+app.get('/home', (req, res) => {
     res.render('home');
 });
 
@@ -58,7 +57,3 @@ process.on('SIGINT', () => {
         process.exit(0);
     })
 });
-
-app.listen(PORT,()=>{
-    console.log(`http://localhost:`+PORT);
-})

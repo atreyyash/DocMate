@@ -16,8 +16,14 @@ const userSchema=new Schema(
         password:{
             type: String,
             required: true
-        }
+        },
+        patientId:[
+            {
+                type: Schema.Types.ObjectId,
+                ref:'PatientModel'
+            }
+        ]
     }
 )
 
-module.exports=mongoose.model('UserModels',userSchema);
+module.exports=mongoose.model('UserModel',userSchema);
