@@ -19,7 +19,32 @@
             <i class="fa-solid fa-user-plus"></i>
         </a>
     </button>
-    <div class="container">
+    <table class="container table">
+         <h2 class="heading">Patient Details</h2>
+        <head>
+
+            <tr class="head">
+                <th><h2>s.no</h2></th>
+                <th><h2>Patient Name</h2></th>
+                <th><h2>Date of Visit</h2></th>
+                <th><h2>Phone No.</h2></th>
+            </tr>
+        </head>
+        <body>
+            {{#each data as |p|}}
+            <a href="" class="entryLink">
+                <tr class="entry">
+                    <td><h3>{{p._id}}</h3></td>
+                    <td><h3>{{p.name}}</h3></td>
+                    <td><h3>{{p.dov}}</h3></td>
+                    <td><h3>{{p.phoneNo}}</h3></td>
+                </tr>
+            </a>
+            {{/each}}
+        </body>
+    </table>
+
+    {{!-- <div class="container">
         <h2 class="heading">Patient Details</h2>
     
         <div class="head">
@@ -29,14 +54,16 @@
             <h3>Phone No.</h3>
         </div>
     
+        {{#each data as |p|}}
         <a href="" class="entryLink">
             <div class="entry">
-                <h2>1</h2>
-                <h2>Ashish Kumar</h2>
-                <h2>30/05/2023</h2>
-                <h2>9876543210</h2>
+                <h2>{{p._id}}</h2>
+                <h2>{{p.name}}</h2>
+                <h2>{{p.dov}}</h2>
+                <h2>{{p.phoneNo}}</h2>
             </div>
         </a>
+        {{/each}}
         <a href="" class="entryLink">
             <div class="entry">
                 <h2>2</h2>
@@ -60,8 +87,8 @@
                 <h2>30/05/2023</h2>
                 <h2>9876543210</h2>
             </div>
-        </a>
-    </div>
+        </a> 
+    </div>--}}
     <script src="../js/navBar.js"></script>
 </body>
 </html>
