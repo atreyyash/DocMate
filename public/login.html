@@ -12,25 +12,20 @@
 
 <body>
     <!-- partial:index.partial.html -->
-    <form class="login-form" action="/users/signup" method="post">
-        <h1>SignUp</h1>
+    <form class="login-form" action="/users/login" method="post">
+        <h1>Login</h1>
         <div class="form-input-material">
-            <input type="text" name="email" id="signip-email" placeholder=" " autocomplete="off"
+            <input type="text" name="email" id="login-email" placeholder=" " autocomplete="off"
                 class="form-control-material" required />
             <label for="email">Email</label>
         </div>
         <div class="form-input-material">
-            <input type="text" name="username" id="signup-username" placeholder=" " autocomplete="off"
-                class="form-control-material" required />
-            <label for="username">Username</label>
-        </div>
-        <div class="form-input-material">
-            <input type="password" name="password" id="signup-password" placeholder=" " autocomplete="off"
+            <input type="password" name="password" id="login-password" placeholder=" " autocomplete="off"
                 class="form-control-material" required />
             <label for="password">Password</label>
         </div>
-        <button type="submit" class="btn btn-primary btn-ghost">SignUp</button>
-        <span>Already Have Account?</span><a href="./login.html" class="btnSu">Login</a>
+        <button type="submit" class="btn btn-primary btn-ghost">Login</button>
+        <span>Didn't Have Account?</span><a href="./index.html" class="btnSu">SignUp</a>
     </form>
 
     <!-- partial -->
@@ -51,7 +46,7 @@
         </div>
         </a>
     </div>
-    <script src="./signUp.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>

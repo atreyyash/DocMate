@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express')
 const app = express();
-
+const passport = require('passport');
 const { body, validationResult } = require('express-validator');
 const router = express.Router();
 const hbs = require('hbs');
@@ -35,11 +35,11 @@ router.post('/signup', [
     try {
         let hasUser = await UserModels.findOne({ email })
         if (hasUser)
-            return res.send("user already present");
+            return res.send("User Already Exists");
     }
     catch (err) {
         res.json({ err: "internal server error" })
-        res.json({ message: "user created" })
+        // res.json({ message: "user created" })
     }
     try {
         if (username.indexOf(' ') >= 0)
@@ -73,12 +73,12 @@ router.post('/login', [
 
         if (!hasUser)
             return res.json({ message: "signup before login" })
+            // return res.send();
     }
     catch (err) {
         // console.log("server error 1")
         res.json({ error: "internal server error" })
     }
-
     try {
         const user = await UserModels.findOne({ email })
         console.log(user)
@@ -98,5 +98,26 @@ router.post('/login', [
     }
 
 })
+
+router.get('/auth/facebook',
+    passport.authenticate('facebook'),
+);
+
+router.get('/auth/facebook/callback',
+    passport.authenticate('facebook', { failureRedirect: '/login' }),
+    function (req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/home');
+});
+
+router.get('/auth/google',
+    passport.authenticate('google', { scope: ['profile'] }));
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', { failureRedirect: '/login' }),
+    function (req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/home');
+});
 
 module.exports = router;
