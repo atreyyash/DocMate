@@ -4,6 +4,8 @@ const app = express();
 const PORT = 4444;
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
+const session = require('express-session');
+const passport = require('./auth/passport');
 const mongoose  = require('mongoose');
 
 const dotenv = require('dotenv');
@@ -16,7 +18,18 @@ hbs.registerPartials(__dirname + '/views/partials');
 
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({ extended: true }));
+app.use(session({
+    secret: 'adqwdfwecsacdsdsdf',
+    resave: false,
+    saveUninitialized: true
+}));
+
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 let patientRouter = require('./routes/patients/patients');
 
 
@@ -26,7 +39,10 @@ app.use('/users',users)
 app.use("/patient", patientRouter);
 
 app.get('/home', (req, res) => {
-    res.render('home');
+    console.log(req.user);
+    res.render('home', {
+        name: req.user.username
+    });
 });
 
 
