@@ -30,20 +30,24 @@ app.use(passport.session());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-let patientRouter = require('./routes/patients/patients');
+// let patientRouter = require('./routes/patients/patients');
 
 
-const users=require('./routes/users')
-
-app.use('/users',users)
-app.use("/patient", patientRouter);
+// const users=require('./routes/users')
 
 app.get('/home', (req, res) => {
-    console.log(req.user);
+    console.log('user : ',req.user);
     res.render('home', {
         name: req.user.username
     });
 });
+
+app.get('/login',(req,res)=>{
+    res.render('login')
+})
+app.use('/users',require('./routes/users'))
+app.use("/patient", require('./routes/patients/patients'));
+
 
 
 mongoose.connect(url)
