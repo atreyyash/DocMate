@@ -2,6 +2,8 @@ const patient = require("../../models/patients");
 
 module.exports.getPatients =async (req, res, next) => {
    try{
+      // console.log(req.user)
+
       let data=await patient.find({}).lean().exec()
       data.map((d)=>{
          let date=new Date(d.dov).toDateString()
@@ -22,6 +24,8 @@ module.exports.getPatients =async (req, res, next) => {
 
 module.exports.getAddPatient = async(req, res, next) => {
    try{
+      console.log(req.user.username)
+
       let data=await patient.find({}).exec()
       data.dov=new Date(data.dov).toDateString()
       console.log(data.dov)
@@ -37,6 +41,7 @@ module.exports.getAddPatient = async(req, res, next) => {
 
 module.exports.postAddPatient = async(req, res, next) => {
    console.log(req.body)
+   console.log(req.user.username)
    try{
       const Patient = {
          name:req.body.name,
@@ -54,7 +59,7 @@ module.exports.postAddPatient = async(req, res, next) => {
       console.log(Patient)
       const data= await patient.create(Patient);
       console.log(data);
-
+      console.log(req.user);
       res.redirect('/patient')
    }
    catch(err)
