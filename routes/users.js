@@ -24,19 +24,22 @@ router.post('/signup', async (req, res, next) => {
         let user=await User.findOne({email});
         if(user)
         {
-            res.render('login', {
-                msg: "User is Already Present"
-            });
+            res.redirect('/login');
         }
         else{
             bcrypt.genSalt(saltRounds,async function(err,salt){
                 bcrypt.hash(password,salt, async function(err,hash){
-                    await User.create({
-                        email,
-                        username,
-                        password:hash
-                    })
-                    res.redirect('/home');
+                    try {
+                        await User.create({
+                            email,
+                            username,
+                            password:hash
+                        })
+                        res.redirect('/home');
+                    }
+                    catch (err) {
+                        res.send(err);
+                    }
                 })
             })
         }
