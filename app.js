@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('./auth/passport');
 const mongoose  = require('mongoose');
+app.use(express.static(path.join(__dirname, 'public')));
 
 const dotenv = require('dotenv');
 
@@ -27,19 +28,22 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static(path.join(__dirname, 'public')));
-
 
 // let patientRouter = require('./routes/patients/patients');
-
-
 // const users=require('./routes/users')
-
+app.get('/', (req, res) => {
+    res.render('index')
+})
 app.get('/home', (req, res) => {
-    console.log('user : ',req.user);
-    res.render('home', {
-        name: req.user.username
-    });
+    console.log('user : ', req.user);
+    if (req.user) {
+        res.render('home', {
+            name: req.user.username
+        });
+    }
+    else {
+        res.redirect('/login');
+    }
 });
 
 app.get('/login',(req,res)=>{
