@@ -6,8 +6,14 @@ const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const passport = require('./auth/passport');
-const mongoose  = require('mongoose');
+const mongoose = require('mongoose');
 app.use(express.static(path.join(__dirname, 'public')));
+let MongoDBStore = require('connect-mongodb-session')(session);
+
+let store = new MongoDBStore({
+    uri: 'mongodb://127.0.0.1:27017/pms',
+    collection: 'mySession'
+});
 
 const dotenv = require('dotenv');
 
@@ -22,8 +28,11 @@ app.use(express.urlencoded({ extended: true }));
 app.use(session({
     secret: 'adqwdfwecsacdsdsdf',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: store
 }));
+const flash = require('connect-flash');
+app.use(flash());
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -32,7 +41,14 @@ app.use(passport.session());
 // let patientRouter = require('./routes/patients/patients');
 // const users=require('./routes/users')
 app.get('/', (req, res) => {
-    res.render('index')
+    // res.render('index')
+    console.log(req.user);
+    if (req.user) {
+        res.render('home');
+    }
+    else {
+        res.render("index");
+    }
 })
 app.get('/home', (req, res) => {
     console.log('user : ', req.user);
@@ -46,9 +62,26 @@ app.get('/home', (req, res) => {
     }
 });
 
-app.get('/login',(req,res)=>{
-    res.render('login')
-})
+app.get('/signup', (req, res) => {
+    res.render('index');
+});
+
+app.get('/login', (req, res) => {
+    const error = req.flash().errors || [];
+    res.render('login', { error })
+});
+
+app.post('/logout', (req, res, next) => {
+    req.logout(function (err) {
+        if (err) { return next(err); }
+    });
+    req.session.destroy((err) => {
+        res.clearCookie('connect.sid');
+        res.send('Logged out');
+        // res.redirect('/');
+    });
+});
+
 app.use('/users',require('./routes/users'))
 app.use("/patient", require('./routes/patients/patients'));
 

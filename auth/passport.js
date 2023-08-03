@@ -9,15 +9,16 @@ dotenv.config();
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
-    passwordField: 'password'
+    passwordField: 'password',
+    passReqToCallback: true
 },
-    async function (email, password, done) {
+    async function (req, email, password, done) {
         console.log("HERE : ", email, password);
         try {
             let user = await User.findOne({ username: email });
-            if (!user) { return done(null, false); }
+            if (!user) { return done(null, false, req.flash('errors', 'User Not Found!')); }
             bcrypt.compare(password, user.password).then(function (result) {
-                if (result == false) return done(null, false);
+                if (result == false) return done(null, false, req.flash('errors', 'Password Incorrect'));
                 return done(null, user);
             });
 
