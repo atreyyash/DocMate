@@ -24,6 +24,7 @@ router.post('/signup', async (req, res, next) => {
         let user=await User.findOne({email});
         if(user)
         {
+            req.flash('errors', "User Already exists!");
             res.redirect('/login');
         }
         else{
@@ -50,7 +51,7 @@ router.post('/signup', async (req, res, next) => {
 })
 
 router.post('/login',
-    passport.authenticate('local', { failureRedirect: '/login' }),
+    passport.authenticate('local', { failureFlash: true, failureRedirect: '/login' }),
     function (req, res) {
         res.redirect('/home');
 });

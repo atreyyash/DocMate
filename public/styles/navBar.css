@@ -1,19 +1,19 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-.nav{
+.nav {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    height: 80px;
+    height: 90px;
     width: 100%;
     background-color: #fff;
 }
 
-.navBar{
+.navBar {
     /* border: 1px solid black; */
     /* background-color: #979494; */
     padding: 15px;
@@ -23,7 +23,7 @@
     margin: auto;
 }
 
-.navBar ul{
+.navBar ul {
     display: flex;
 }
 
@@ -34,17 +34,17 @@
     z-index: 1;
 }
 
-.navBar ul li a{
+.navBar ul li a {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    
+
 }
 
-.navBar ul li a .icon{
+.navBar ul li a .icon {
     position: relative;
     line-height: 80px;
     transition: 0.5s;
@@ -52,12 +52,12 @@
     color: darkslateblue;
 }
 
-.navBar ul li.active a .icon{
+.navBar ul li.active a .icon {
     font-size: 20px;
     transform: translateY(-6px);
 }
 
-.navBar ul li a .text{
+.navBar ul li a .text {
     position: absolute;
     font-size: 12px;
     color: #fff;
@@ -68,7 +68,7 @@
     transform: scale(0);
 }
 
-.navBar ul li.active a .text{
+.navBar ul li.active a .text {
     transform: scale(1);
 }
 
@@ -92,7 +92,7 @@
     color: rgb(96, 74, 239);
 } */
 
-.indicator{
+.indicator {
     position: absolute;
     left: 19px;
     width: 70px;
@@ -102,41 +102,41 @@
     transition: 0.5s;
 }
 
-.navBar ul li:nth-child(1).active ~ .indicator{
+.navBar ul li:nth-child(1).active~.indicator {
     background: #f53b57;
     box-shadow: 0 15px 25px #f53b5799;
     transform: translateX(calc(80px * 0));
 }
 
-.navBar ul li:nth-child(2).active ~ .indicator{
+.navBar ul li:nth-child(2).active~.indicator {
     background: #5d62fb;
     box-shadow: 0 15px 25px #5d62fb99;
     transform: translateX(calc(80px * 1));
 }
 
-.navBar ul li:nth-child(3).active ~ .indicator{
+.navBar ul li:nth-child(3).active~.indicator {
     background: #05c46b;
     box-shadow: 0 15px 25px #05c46b99;
     transform: translateX(calc(80px * 2));
 }
 
-.navBar ul li:nth-child(4).active ~ .indicator{
+.navBar ul li:nth-child(4).active~.indicator {
     background: #0fbcf9;
     box-shadow: 0 15px 25px #0fbcf999;
     transform: translateX(calc(80px * 3));
 }
 
-.search-box{
+.search-box {
     translate: (-50%, -50%);
     height: 50px;
     border-radius: 40px;
     padding: 10px;
     background: #8BA1AD;
     transition: 1s;
-    margin-right: 45px;
+    margin-right: 30px;
 }
 
-.search-box:hover{
+.search-box:hover {
     /* box-shadow: 2px 6px #bdc3c7; */
     box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.4), 0 8px 22px 0 rgba(0, 0, 0, 0.25);
 }
@@ -148,7 +148,7 @@
     background-color: invert(0);
 } */
 
-.search-txt{
+.search-txt {
     height: 26px;
     background: none;
     border: none;
@@ -161,7 +161,7 @@
     width: 0px;
 }
 
-.search-btn{
+.search-btn {
     float: right;
     border-radius: 50%;
     display: flex;
@@ -172,11 +172,24 @@
     width: 30px;
 }
 
-.search-box:hover > .search-txt{
+.search-box:hover>.search-txt {
     width: 240px;
     padding: 0 6px;
 }
 
-.search-box:hover > .search-btn{
+.search-box:hover>.search-btn {
     background: white;
+}
+
+.logout {
+    margin-right: 35px;
+    cursor: pointer;
+    /* padding: 8px; */
+    color:#5d62fb;
+    font-size: 30px;
+}
+
+.logout:hover{
+    transform : scaleY(-1) ;
+    color: #292d7bda;
 }

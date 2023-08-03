@@ -4,13 +4,18 @@
 <head>
     <meta charset="UTF-8">
     <title>DocMate</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel='stylesheet' href='https://cdn.jsdelivr.net/gh/alphardex/aqua.css@master/dist/aqua.min.css'>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./styles/loginStyle.css">
 </head>
 
 <body>
+    {{#each error as |e|}}
+        <span>{{e}}</span>
+    {{/each}}
     <!-- partial:index.partial.html -->
     <form class="login-form" action="/users/signup" method="post">
         <h1>SignUp</h1>
@@ -30,7 +35,7 @@
             <label for="password">Password</label>
         </div>
         <button type="submit" class="btn btn-primary btn-ghost">SignUp</button>
-        <span>Already Have Account?</span><a href="./login" class="btnSu">Login</a>
+        <span>Already Have Account?</span><a href="/login" class="btnSu">Login</a>
     </form>
 
     <!-- partial -->
@@ -39,16 +44,16 @@
         <h1>Login via Social <br> Accounts</h1>
 
         <a href="/users/auth/google" class="gBtn">
-        <div>
-            <i class="fa-brands fa-google"></i>
-            <span>Login with Google</span>
-        </div>
+            <div>
+                <i class="fa-brands fa-google"></i>
+                <span>Login with Google</span>
+            </div>
         </a>
         <a href="/users/auth/facebook" class="gBtn">
-        <div>
-            <i class="fa-brands fa-facebook"></i>
-            <span>Login with Facebook</span>
-        </div>
+            <div>
+                <i class="fa-brands fa-facebook"></i>
+                <span>Login with Facebook</span>
+            </div>
         </a>
     </div>
     <script src="./signUp.js"></script>
