@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Visit</title>
+    <link rel="stylesheet" href="/styles/addVisit.css">
+    {{>meta}}
+</head>
+
+<body>
+    {{>navBar}}
+    <div class="container">
+        <form action="/patient/addVisit" method="post">
+            {{#each error as |e|}}
+            <% if (messages.error) { %>
+                <div class="alert alert-danger">
+                    <%= messages.error %>
+                </div>
+                <% } %>
+                    <% if (messages.success) { %>
+                        <div class="alert alert-success">
+                            <%= messages.success %>
+                        </div>
+                        <% } %>
+                            {{/each}}
+                            <label for="complaints" class="label">Complaints:</label><br>
+                            <textarea id="complaints" name="complaints" rows="4" cols="57" class="inp"></textarea><br>
+                            <label for="investigation" class="label">Investigation:</label><br>
+                            <textarea id="complaints" name="investigation" rows="4" cols="57" class="inp"></textarea><br>
+                            <label for="diagnosis" class="label">Diagnosis ( Nidan ):</label><br>
+                            <input type="text" name="diagnosis" list="diseaseList" class="inp">
+                            <datalist id="diseaseList">
+                                <option value="Anah">
+                                <option value="Amlpitta">
+                                <option value="Arsha">
+                                <option value="Ashnishool">
+                                <option value="Janushool">
+                                <option value="Kantdha">
+                                <option value="Katishool">
+                                <option value="Migraine">
+                                <option value="Mukhpak">
+                                <option value="Psoriasis">
+                                <option value="Shirashoola">
+                                <option value="Sandhishool">
+                                <option value="Sandhishool">
+                                <option value="Skandshool">
+                                <option value="Urticaria">
+                                <option value="Udardha">
+                                <option value="Udargorav">
+                                <option value="Vashadha">
+                            </datalist>
+                            <br>
+                            <label for="treatment" class="label">Treatment:</label><br>
+                            <textarea id="complaints" name="treatment" rows="5" cols="57" class="inp"></textarea><br>
+                            <label for="duration" class="label">Duration:</label><br>
+                            <input type="text" id="duration" name="duration" class="inp"><br>
+                            <label for="therapy" class="label">Therapy:</label><br>
+                            <input type="text" id="therapy" name="therapy" class="inp"><br>
+                            <label for="payment" class="label">Payment:</label><br>
+                            <input type="text" id="payment" name="payment" class="inp"><br>
+                            <label for="remarks" class="label">Remarks:</label><br>
+                            <input type="text" id="remarks" name="remarks" class="inp"><br>
+                            <input hidden type="text" id="patientId" name="patientId" value={{patientId}}>
+                            <input type="submit" value="Submit" class="btn">
+        </form>
+    </div>
+    {{>scripts}}
+</body>
+
+</html>

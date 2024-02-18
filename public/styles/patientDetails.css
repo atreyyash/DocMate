@@ -1,0 +1,114 @@
+.container {
+    width: 97%;
+    border: 1px solid black;
+    margin: auto;
+    padding: 10px;
+}
+
+.pd {
+    box-shadow: 4px 4px 2px #41404099, 3px 3px 2px #43434399;
+    border: 1px solid black;
+    margin: 8px auto;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    column-gap: 40px;
+    row-gap: 20px;
+    width: 90%;
+    /* border: 1px solid black; */
+    position: relative;
+}
+
+.pItems {
+    flex: 1 1 20%;
+    padding: 5px;
+    font-size: 19px;
+}
+
+.pd:nth-child(even) {
+    background-color: #d9be46bc;
+}
+
+.pItem {
+    font-weight: 400;
+}
+
+.patientVisit {
+    position: fixed;
+    bottom: 50px;
+    right: 40px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 25px;
+    background-color: #a9a8a7b1;
+    border-radius: 9px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.patientVisit .pIcon {
+    position: relative;
+    transition: 0.5s
+}
+
+.patientVisit:hover {
+    /* font-size: 25px; */
+    background-color: #27262699;
+    padding: 10px;
+    cursor: pointer;
+    height: 60px;
+    width: 60px;
+}
+
+.patientVisit:hover .pIcon {
+    font-size: 20px;
+    transform: translateY(-6px);
+}
+
+#visits {
+    font-family: cursive;
+    font-size: 35px;
+    font-weight: 800;
+}
+
+.patientVisit .cc {
+    /* display: none; */
+    font-size: 14px;
+    transition: 0.25s;
+    transform: scale(0);
+    position: absolute;
+    bottom: 5px;
+}
+
+.patientVisit:hover .cc {
+    /* display: block; */
+    transform: scale(1);
+}
+
+.edit {
+    position: absolute;
+    right: -12px;
+    top: -12px;
+    background-color: #5d62fb;
+    padding: 8px;
+    font-size: 15px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.editA:link {
+    color: black;
+}
+
+.editA:visited {
+    color: black;
+}
+
+.edit:hover {
+    background-color: #4f4ff3b9;
+}

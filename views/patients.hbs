@@ -10,38 +10,47 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles/navBar.css">
     <link rel="stylesheet" href="../styles/style.css">
+    <link rel="icon" href="/images/patients.svg" type="image/gif">
 </head>
 <body>
     {{>navBar}}
     {{!-- <h1>All Patients</h1> --}}
     <button type="button" class="addBtn">
-        <a href="/patient/addpatient">
+        {{!-- <a href="/patient/addpatient"> --}}
             <i class="fa-solid fa-user-plus"></i>
-        </a>
+        {{!-- </a> --}}
     </button>
+    <h2 class="heading">Patient Details</h2>
     <table class="container table">
-         <h2 class="heading">Patient Details</h2>
-        <head>
-
-            <tr class="head">
-                <th><h2>s.no</h2></th>
-                <th><h2>Patient Name</h2></th>
-                <th><h2>Date of Visit</h2></th>
-                <th><h2>Phone No.</h2></th>
-            </tr>
-        </head>
-        <body>
+        {{!-- <thead> --}}
+        <tr class="head">
+            <th><h2>s.no</h2></th>
+            <th><h2>Patient Name</h2></th>
+            <th><h2>Date of Visit</h2></th>
+            <th><h2>Phone No.</h2></th>
+        </tr>
+        {{!-- </thead> --}}
+        {{!-- <tbody> --}}
             {{#each data as |p|}}
-            <a href="" class="entryLink">
+            {{!-- <a href="/patient/details?patientId={{p._id}}" class="entryLink"> --}}
                 <tr class="entry">
                     <td><h3>{{@index}}</h3></td>
-                    <td><h3>{{p.name}}</h3></td>
+                    <td><h3><a class="entryLink" href="/patient/details?patientId={{p._id}}">{{p.name}}</a></h3></td>
                     <td><h3>{{p.dov}}</h3></td>
                     <td><h3>{{p.phoneNo}}</h3></td>
                 </tr>
-            </a>
+            {{!-- </a> --}}
             {{/each}}
-        </body>
+                <tr class="search">
+
+                <tr/>
+                {{!-- <tr class="search"> --}}
+                    {{!-- <td><h3>{{@index}}</h3></td>
+                    <td><h3><a class="entryLink" href="/patient/details?patientId={{p._id}}">{{p.name}}</a></h3></td>
+                    <td><h3>{{p.dov}}</h3></td>
+                    <td><h3>{{p.phoneNo}}</h3></td> --}}
+                {{!-- </tr> --}}
+        {{!-- </tbody> --}}
     </table>
 
     {{!-- <div class="container">
@@ -89,6 +98,8 @@
             </div>
         </a> 
     </div>--}}
-    <script src="../js/navBar.js"></script>
+    {{>scripts}}
+    <script src="../js/addPatient.js"></script>
+    <script src="../js/search.js"></script>
 </body>
 </html>

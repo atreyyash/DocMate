@@ -13,13 +13,18 @@ passport.use(new LocalStrategy({
     passReqToCallback: true
 },
     async function (req, email, password, done) {
-        console.log("HERE : ", email, password);
+        // console.log("HERE : ", email, password);
         try {
             let user = await User.findOne({ username: email });
             if (!user) { return done(null, false, req.flash('errors', 'User Not Found!')); }
             bcrypt.compare(password, user.password).then(function (result) {
                 if (result == false) return done(null, false, req.flash('errors', 'Password Incorrect'));
                 return done(null, user);
+            })
+                .catch(function (err) {
+                    // Handle the error here
+                    console.error('An error occurred:', err);
+                    return done(err);
             });
 
         }
@@ -39,24 +44,29 @@ passport.use(new FacebookStrategy({
         // console.log("Access Token: ", accessToken);
         // console.log("Refresh Token:", refreshToken);
         // console.log("Profile: ", profile);
-        let facebookId = profile.id;
-        let user = await User.findOne({ facebookId }).exec();
-        // console.log(user);
-        if (user) {
+        try { 
+            let facebookId = profile.id;
+            let user = await User.findOne({ facebookId }).exec();
             // console.log(user);
-            return cb(null, user);
+            if (user) {
+                // console.log(user);
+                return cb(null, user);
+            }
+            else {
+                User.create({
+                    username: profile.displayName,
+                    token: accessToken,
+                    facebookId: profile.id
+                }).then((user) => {
+                    cb(null, user);
+                })
+                    .catch(err => {
+                        cb(err, false);
+                    });
+            }
         }
-        else {
-            User.create({
-                username: profile.displayName,
-                token: accessToken,
-                facebookId: profile.id
-            }).then((user) => {
-                cb(null, user);
-            })
-                .catch(err => {
-                    cb(err, false);
-                });
+        catch (err) {
+            cb(err, false);
         }
     }
 ));
@@ -70,24 +80,29 @@ passport.use(new GoogleStrategy({
         // console.log("Access Toke: ", accessToken);
         // console.log("Refresh Token: ", refreshToken);
         // console.log("Profile: ", profile);
-        let googleId = profile.id;
-        let user = await User.findOne({ googleId }).exec();
-        if (user) {
-            // console.log(user);
-            return cb(null, user);
+        try { 
+            let googleId = profile.id;
+            let user = await User.findOne({ googleId }).exec();
+            if (user) {
+                // console.log(user);
+                return cb(null, user);
+            }
+            else {
+                User.create({
+                    email: profile.email,
+                    username: profile.displayName,
+                    token: accessToken,
+                    googleId: profile.id
+                }).then((user) => {
+                    cb(null, user);
+                })
+                    .catch(err => {
+                        cb(err, false);
+                    });
+            }
         }
-        else {
-            User.create({
-                email: profile.email,
-                username: profile.displayName,
-                token: accessToken,
-                googleId: profile.id
-            }).then((user) => {
-                cb(null, user);
-            })
-                .catch(err => {
-                    cb(err, false);
-                });
+        catch (err) {
+            cb(err, false);
         }
     }
 ));

@@ -1,0 +1,103 @@
+body {
+    perspective: 800px;
+    /* background-color: rgb(250, 246, 232); */
+}
+
+.card {
+    width: 400px;
+    height: 250px;
+    margin: 40px auto;
+    border: 1px solid black;
+    background-color: blueviolet;
+    position: relative;
+    transform-style: preserve-3d;
+    transition-duration: 1s;
+    backface-visibility: hidden;
+}
+
+.card:hover {
+    transform: rotateY(180deg);
+}
+
+.side-a {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(162, 162, 160, 0.622);
+    border: 1px solid black;
+    position: absolute;
+    transform: rotateY(180deg);
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+    font-size: 50px;
+    margin-top: 80px;
+}
+
+.side-revenue {
+    width: 100%;
+    height: 100%;
+    background-color: cadetblue;
+    position: absolute;
+    background: url(../images/bitcoin.gif);
+    background-size: cover;
+    background-position: center;
+    background-size: 95% 95%;
+}
+
+.side-monthly {
+    width: 100%;
+    height: 100%;
+    background-color: cadetblue;
+    position: absolute;
+    background: url(../images/calendar.gif);
+    background-size: cover;
+    background-position: center;
+    background-size: 100% 100%;
+}
+
+.side-weekly {
+    width: 100%;
+    height: 100%;
+    background-color: cadetblue;
+    position: absolute;
+    background: url(../images/customer.gif);
+    background-size: cover;
+    background-position: center;
+    background-size: 95% 90%;
+}
+
+.heading {
+    font-size: 40px;
+    font-weight: 600;
+    text-align: left;
+    font-family: 'Pacifico', cursive;
+    /* margin-top: 5px; */
+    /* margin-left: 10px; */
+    padding: 7px;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: 600;
+    text-align: center;
+    font-family: 'Pacifico', cursive;
+    /* margin-top: 5px; */
+    /* margin-left: 10px; */
+    padding: 10px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 90%;
+    margin: auto;
+    column-gap: 20px;
+    /* height: 94vh; */
+}

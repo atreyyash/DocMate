@@ -1,18 +1,22 @@
 const {mongoose, Schema } = require("mongoose");
 const { type } = require("os");
 
-let patientSchema=new Schema({
-    name:{
+let patientSchema = new Schema({
+    name: {
         type: String,
         required: true,
     },
-    age:{
-        type:Number,
-        required:true,
+    age: {
+        type: Number,
+        required: true,
     },
     gender: {
         type: String,
-        required:true,
+        required: true,
+    },
+    dov: {
+        type: Date,
+        default: Date.now(),
     },
     phoneNo: {
         type: Number,
@@ -20,27 +24,46 @@ let patientSchema=new Schema({
     address: {
         type: String,
     },
-    dov: {
-        type: [{type:Date}],
+    height: {
+        type: Number
     },
-    complaints :{
-        type:String,
+    weight: {
+        type: Number
     },
-    diagnosis: {
-        type: String,
-        required:true,
+    prakarti: {
+        type: String
     },
-    treatmentPeriod: {
-        type: Number,
-        required:true,
-    },
-    payment: {
-        type: Number,
-        required:true,
-    },
-    remarks:{
-        type:String,
-    },
+    visits: [
+        {
+            complaints: {
+                type: String
+            },
+            investigation: {
+                type: String
+            },
+            diagnosis: {
+                type: String
+            },
+            treatment: {
+                type: String
+            },
+            therapy: {
+                type: String
+            },
+            duration: {
+                type: String
+            },
+            payment: {
+                type: Number
+            },
+            remarks: {
+                type: String
+            },
+            dov: {
+                type: Date
+            }
+        }
+    ],
     doctorId: {
         type: Schema.Types.ObjectId,
         ref: 'UserModel'

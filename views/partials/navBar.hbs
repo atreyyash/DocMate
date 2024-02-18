@@ -1,4 +1,7 @@
 <div class="nav">
+    {{#if url}}
+    <h3 class="logo">DocMate</h3>
+    {{/if}}
     <div class="navBar">
         <ul>
             <li class="list active">
@@ -9,7 +12,7 @@
             </li>
             <li class="list">
                 <a href="/patient/" class="navItem">
-                    <span class="icon"><i class="fa-solid fa-user"></i></span>
+                    <span class="icon"><img class="patientImg" src="/images/crowd.png" alt=""></span>
                     <span class="text">Patients</span>
                 </a>
             </li>
@@ -31,14 +34,19 @@
     </div>
     <div class="search-box">
         <input type="text" class="search-txt" placeholder="Search Here">
-        <a href="#" class="search-btn">
+        <a href="" class="search-btn">
             <!-- <img src="img/icons8-search.gif" alt=""> -->
             <i class="fa-solid fa-magnifying-glass"></i>
         </a>
     </div>
+    <div class="profile">
+        <a href="/users/profile" class="profileBtn">
+            <span class="profileIcon"><i class="fa-solid fa-user"></i></span>
+            <span class="profileText">Profile</span>
+        </a>
+    </div>
     <div class="logout">
-        {{!-- <button class="logout"> --}}
-            <i class="fa-solid fa-right-from-bracket"></i>
-        {{!-- </button> --}}
+        <span class="logIcon"><i class="fa-solid fa-right-from-bracket"></i></span>
+        <span class="logText">Logout</span>
     </div>
 </div>

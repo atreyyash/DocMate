@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Patient</title>
+    {{>meta}}
+    <link rel="stylesheet" href="../styles/editPatient.css">
+</head>
+
+<body>
+    {{>navBar}}
+
+    <div class="container">
+        <div class="form">
+            <form action="/patient/updatePatient" method="post">
+
+                <div class="form-row">
+                    <div>
+                        <label for="name" class="label" required>Name: </label>
+                        <input type="text" id="name" name="name" class="inp" value={{p.name}}>
+                    </div>
+
+                    <div>
+                        <label for="age" class="label">Age:</label>
+                        <input type="text" id="age" name="age" class="inp" value={{p.age}}>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="gender" class="label">Gender: </label>
+                        <input type="radio" name="gender" id="male" value="male" {{#if (eq p.gender 'male')}}checked{{/if}}>
+                        <label for="male" class="label">Male</label>
+                    </div>
+
+                    <div>
+                        <input type="radio" name="gender" id="female" value={{p.gender}} {{#if (eq p.gender 'female')}}checked{{/if}}>
+                        <label for="female" class="label">Female</label><br>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="phno" class="label">Phone No:</label>
+                        <input type="text" id="phno" name="phno" class="inp" value={{p.gender}}><br>
+                    </div>
+
+                    <div>
+                        <label for="address" class="label">Address:</label>
+                        <input type="text" id="address" name="address" class="inp" value={{p.address}}><br>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div>
+                        <label for="height" class="label">Height: </label>
+                        <input type="number" id="height" name="height" class="inp" value={{p.height}}><br>
+                    </div>
+
+                    <div>
+                        <label for="weight" class="label">Weight: </label>
+                        <input type="number" id="weight" name="weight" class="inp" value={{p.weight}}><br>
+                    </div>
+
+                    <div>
+                        <label for="prakarti" class="label">Prakarti: </label>
+                        <select name="prakarti" id="prakarti">
+                            <option value="V" {{#if (eq p.prakarti 'V')}}selected{{/if}}>V</option>
+                            <option value="P" {{#if (eq p.prakarti 'P')}}selected{{/if}}>P</option>
+                            <option value="K" {{#if (eq p.prakarti 'K')}}selected{{/if}}>K</option>
+                            <option value="VP" {{#if (eq p.prakarti 'VP')}}selected{{/if}}>VP</option>
+                            <option value="VK" {{#if (eq p.prakarti 'VK')}}selected{{/if}}>VK</option>
+                            <option value="PK" {{#if (eq p.prakarti 'PK')}}selected{{/if}}>PK</option>
+                            <option value="VPK" {{#if (eq p.prakarti 'VPK')}}selected{{/if}}>VPK</option>
+                        </select><br>
+                    </div>
+                </div>
+                <input type="text" hidden id="id" name="id" value={{p._id}}>
+                <button type="submit" value="Add Patient" class="btn">Submit</button>
+            </form>
+        </div>
+    </div>
+    {{>scripts}}
+</body>
+
+</html>

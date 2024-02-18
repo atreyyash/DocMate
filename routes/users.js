@@ -16,9 +16,11 @@ hbs.registerPartials(__dirname + '/views/partials');
 app.set('view engine', 'hbs');
 app.use(cookieParser());
 
+const userController = require('../controllers/userController');
+
 router.post('/signup', async (req, res, next) => {
     const { username, password, email } = req.body;
-    console.log(req.body)
+    // console.log(req.body)
     
     try {
         let user=await User.findOne({email});
@@ -76,5 +78,7 @@ router.get('/auth/google/callback',
         // Successful authentication, redirect home.
         res.redirect('/home');
 });
+
+router.get('/profile', userController.getProfile);
 
 module.exports = router;
