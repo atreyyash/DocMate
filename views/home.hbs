@@ -9,41 +9,42 @@
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../styles/navBar.css">
+    <link rel="stylesheet" href="../styles/home.css">
+    <link rel="icon" href="/images/home.svg" type="image/gif">
 </head>
 
 <body>
-    {{!-- <div class="navBar">
-        <ul>
-            <li class="list active">
-                <a href="#" class="navItem">
-                    <span class="icon"><i class="fa-solid fa-house"></i></span>
-                    <span class="text">Home</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="/patient/" class="navItem">
-                    <span class="icon"><i class="fa-solid fa-user"></i></span>
-                    <span class="text">Patients</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="#" class="navItem">
-                    <span class="icon"><i class="fa-solid fa-warehouse"></i></span>
-                    <span class="text">Inventory</span>
-                </a>
-            </li>
-            <li class="list">
-                <a href="#" class="navItem">
-                    <span class="icon"><i class="fa-solid fa-comment"></i></span>
-                    <span class="text">Feedback</span>
-                </a>
-            </li>
-            <div class="indicator"></div>
-        </ul>
-    </div> --}}
     {{>navBar}}
-    <p>hi {{name}}</p>
-    <h3>You have logged In successfully</h3>
+        {{!-- <p>hi {{name}}</p> --}}
+    <div class="container">
+        {{#each error as |e|}}
+        <span class="alert alert-danger">{{e}}</span>
+        {{/each}}
+        <div class="card">
+            <div class="side-a">
+                <div class="info">
+                    {{dash.revenue}}
+                </div>
+            </div>
+            <div class="side-revenue heading">Revenue</div>
+        </div>
+        <div class="card">
+            <div class="side-a">
+                <div class="info">
+                    {{dash.monthly_pat}}
+                </div>
+            </div>
+            <div class="side-monthly heading">Monthly Patients</div>
+        </div>
+        <div class="card">
+            <div class="side-a">
+                <div class="info">
+                    {{dash.weekly_pat}} 
+                </div>
+            </div>
+            <div class="side-weekly heading">Weekly Patients</div>
+        </div>
+    </div>
     <script src="../js/navBar.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
     <script src="../js/logout.js"></script>

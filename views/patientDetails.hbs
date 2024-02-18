@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{patient.name}}</title>
+    <link rel="stylesheet" href="/styles/patientDetails.css">
+    <link rel="icon" href="/images/fever-2.gif" type="image/gif">
+    {{>meta}}
+</head>
+
+<body>
+    {{>navBar}}
+
+    <div class="container">
+        {{#if message}}
+        {{#each message as |m|}}
+        <div class="alert alert-success">{{m}}</div>
+        {{/each}}
+        {{/if}}
+
+        <div class="pd">
+            <a href="/patient/editPatient?id={{patient._id}}" class="editA">
+                <span class="edit"><i class="fa-solid fa-user-pen"></i></span>
+            </a>
+            <h3 class="pItems">Name: {{patient.name}}</h3>
+            <h3 class="pItems">Age: {{patient.age}}</h3>
+            <h3 class="pItems"><i class="fa-solid fa-person-half-dress"></i> Sex: {{patient.gender}}</h3>
+            <h3 class="pItems"><i class="fa-solid fa-location-dot fa-bounce"></i> Area: {{patient.address}}</h3>
+            <h3 class="pItems"><i class="fa-solid fa-phone fa-shake"></i> Phone No.: {{patient.phoneNo}}</h3>
+            <h3 class="pItems"><i class="fa-solid fa-person-arrow-up-from-line"></i> Height: {{patient.height}}</h3>
+            <h3 class="pItems"><i class="fa-solid fa-weight-scale"></i> Weight: {{patient.weight}}</h3>
+            <h3 class="pItems"><i class="fa-solid fa-child fa-beat-fade"></i> Prakarti: {{patient.prakarti}}</h3>
+            {{!-- <h3 class="pItems"><i class="fa-regular fa-clock fa-spin-pulse"></i> Date of First Visit: {{date}}
+            </h3> --}}
+        </div><br>
+        <hr>
+        <div class="visits">
+            <h1 id="visits">Visits</h1>
+            {{#each patient.visits as |visit|}}
+            <div class="pd">
+                <h4 class="pItems">Investigation: <span class="pItem">{{visit.investigation}}</span></h4>
+                <h4 class="pItems">Diagnosis: <span class="pItem">{{visit.diagnosis}}</span></h4>
+                <h4 class="pItems">Treatment: <span class="pItem">{{visit.treatment}}</span></h4>
+                <h4 class="pItems">Therapy: <span class="pItem">{{visit.therapy}}</span></h4>
+                <h4 class="pItems">Duration: <span class="pItem">{{visit.duration}}</span></h4>
+                <h4 class="pItems">Payment: <span class="pItem">{{visit.payment}}</span></h4>
+                <h4 class="pItems">Remarks: <span class="pItem">{{visit.remarks}}</span></h4>
+                <h4 class="pItems">Date of Visit: <span class="pItem">{{visit.dov}}</span></h4>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="patientVisit">
+        <a href="/patient/addPatientVisit?patientId={{patient._id}}" class="pIcon">
+            <i class="fa-solid fa-notes-medical"></i>
+        </a>
+        <span class="cc">Add Visit</span>
+    </div>
+    {{>scripts}}
+    {{!--
+    <script src="../js/addVisit.js"></script> --}}
+</body>
+
+</html>
+
+
+{{!-- Input for disease in every visit --}}
+{{!-- <input type="text" name="city" list="cityname">
+<datalist id="cityname">
+    <option value="Boston">
+    <option value="Cambridge">
+</datalist> --}}

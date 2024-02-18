@@ -9,6 +9,7 @@ const passport = require('./auth/passport');
 const mongoose = require('mongoose');
 app.use(express.static(path.join(__dirname, 'public')));
 let MongoDBStore = require('connect-mongodb-session')(session);
+const userHandler = require('./controllers/userController');
 
 let store = new MongoDBStore({
     uri: 'mongodb://127.0.0.1:27017/pms',
@@ -37,25 +38,44 @@ app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use((err, req, res, next) => {
+    res.render('error');
+});
+
+hbs.handlebars.registerHelper('eq', function (a, b) {
+    return a === b;
+});
 
 // let patientRouter = require('./routes/patients/patients');
 // const users=require('./routes/users')
 app.get('/', (req, res) => {
     // res.render('index')
-    console.log(req.user);
-    if (req.user) {
-        res.render('home');
-    }
-    else {
-        res.render("index");
-    }
+    // console.log(req.user);
+    // if (req.user) {
+    //     res.render('home');
+    // }
+    // else {
+    //     res.render("index");
+    // }
+    res.redirect("/home");
 })
-app.get('/home', (req, res) => {
-    console.log('user : ', req.user);
+app.get('/home', async (req, res) => {
+    // console.log('user : ', req.user);
+    // console.log("base url: ", req.originalUrl);
+
     if (req.user) {
-        res.render('home', {
-            name: req.user.username
-        });
+        try {
+            const dash = await userHandler.getDashboard(req.user._id);
+            res.render('home', {
+                name: req.user.username,
+                url: req.originalUrl,
+                dash
+            });
+
+        }
+        catch (err) {
+            req.flash("error", err);
+        }
     }
     else {
         res.redirect('/login');
@@ -87,24 +107,32 @@ app.use("/patient", require('./routes/patients/patients'));
 
 
 
-mongoose.connect(url)
-// console.log(url);
-mongoose.connection.on('connected',()=>{
+mongoose.connect(url).then(() => {
     console.log("mongoose is connected")
-    app.listen(PORT,()=>{
-        console.log(`http://localhost:`+PORT);
+    app.listen(PORT, () => {
+        console.log(`http://localhost:` + PORT);
     })
 })
-
-mongoose.connection.on('disconnected',()=>{
-    console.log("mongoose is disconnected")
-    process.exit(1);
+    .catch((err) => {
+        console.log("Connection disconnected " + err)
 })
+// console.log(url);
+// mongoose.connection.on('connected',()=>{
+//     console.log("mongoose is connected")
+//     app.listen(PORT,()=>{
+//         console.log(`http://localhost:`+PORT);
+//     })
+// })
 
-mongoose.connection.on('error',(err)=>{
-    console.log(err);
-    process.exit(1);
-})
+// mongoose.connection.on('disconnected', () => {
+//     console.log("mongoose is disconnected")
+//     process.exit(1);
+// })
+
+// mongoose.connection.on('error',(err)=>{
+//     console.log(err);
+//     process.exit(1);
+// })
 
 
 process.on('SIGINT', () => {
