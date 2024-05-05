@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const app = express();
-const PORT = 4444;
+const PORT = 5000;
 const hbs = require('hbs');
 const bodyParser = require('body-parser');
 const session = require('express-session');
@@ -12,7 +12,7 @@ let MongoDBStore = require('connect-mongodb-session')(session);
 const userHandler = require('./controllers/userController');
 
 let store = new MongoDBStore({
-    uri: 'mongodb://127.0.0.1:27017/pms',
+    uri: 'mongodb+srv://atreyyash:yashatrey@pms.g1chwmy.mongodb.net/',
     collection: 'mySession'
 });
 
@@ -108,9 +108,9 @@ app.use("/patient", require('./routes/patients/patients'));
 
 
 mongoose.connect(url).then(() => {
-    console.log("mongoose is connected")
+    // console.log("mongoose is connected")
     app.listen(PORT, () => {
-        console.log(`http://localhost:` + PORT);
+        // console.log(`http://localhost:` + PORT);
     })
 })
     .catch((err) => {
