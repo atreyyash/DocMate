@@ -12,7 +12,7 @@ let MongoDBStore = require('connect-mongodb-session')(session);
 const userHandler = require('./controllers/userController');
 
 let store = new MongoDBStore({
-    uri: 'mongodb+srv://atreyyash:yashatrey@pms.g1chwmy.mongodb.net/',
+    uri: process.env.MONGO_URL,
     collection: 'mySession'
 });
 
@@ -137,8 +137,11 @@ mongoose.connect(url).then(() => {
 
 process.on('SIGINT', () => {
     console.log("App is terminating");
-    mongoose.connection.close(() => {
+    mongoose.connection.close().then(() => {
         console.log("Mongoose default connection closed");
         process.exit(0);
-    })
+    }).catch((err) => {
+        console.error("Error closing connection:", err);
+        process.exit(1);
+    });
 });

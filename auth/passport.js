@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const User = require('../models/users');
 const bcrypt = require('bcrypt');
 dotenv.config();
+const baseURL = process.env.BASE_URL || `http://localhost:${process.env.PORT}`;
 
 passport.use(new LocalStrategy({
     usernameField: 'email',
@@ -38,7 +39,7 @@ passport.use(new LocalStrategy({
 passport.use(new FacebookStrategy({
     clientID: process.env.fbClientId,
     clientSecret: process.env.fbClientSecret,
-    callbackURL: "http://localhost:4444/users/auth/facebook/callback"
+    callbackURL: `${baseURL}/users/auth/facebook/callback`
 },
     async function (accessToken, refreshToken, profile, cb) {
         // console.log("Access Token: ", accessToken);
@@ -74,7 +75,7 @@ passport.use(new FacebookStrategy({
 passport.use(new GoogleStrategy({
     clientID: process.env.googleClientId,
     clientSecret: process.env.googleClientSecret,
-    callbackURL: "http://localhost:4444/users/auth/google/callback"
+    callbackURL: `${baseURL}/users/auth/google/callback`
 },
     async function (accessToken, refreshToken, profile, cb) {
         // console.log("Access Toke: ", accessToken);
